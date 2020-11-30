@@ -4,7 +4,7 @@ import {SafeAreaView} from 'react-native';
 import {styles} from './styles';
 import * as colors from './../../utils/colors';
 
-export default function Setting() {
+export default function Setting({navigation}) {
   return (
     <ThemeProvider>
       <SafeAreaView style={styles.container}>

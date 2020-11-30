@@ -4,7 +4,9 @@ const initialAuth = {
   token: null,
   isLoggedIn: false,
 };
-const initialUser = {};
+const initialUser = {
+  usersList:[],
+};
 const initialSnackbar = {
   open: null,
   type: "success",
@@ -38,10 +40,10 @@ export const authReducer = (state = initialAuth, action = {}) => {
 //------------------------------------------------------------------------------user
 export const userReducer = (state = initialUser, action = {}) => {
   switch (action.type) {
-    case Types.SET_USER: {
+    case Types.CREATE_USER: {
       return {
         ...state,
-        ...action.payload,
+        usersList: [...state.usersList, action.payload]
       };
     }
     case Types.REMOVE_USER: {
