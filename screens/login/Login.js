@@ -49,7 +49,7 @@ export default function Login({navigation}) {
             color: colors.secondary,
           }}
           errorStyle={{color: colors.secondary}}
-          errorMessage="ENTER A VALID ERROR HERE"
+          // errorMessage="ENTER A VALID ERROR HERE"
         />
         <Input
           value={password}
@@ -61,7 +61,7 @@ export default function Login({navigation}) {
             color: colors.secondary,
           }}
           errorStyle={{color: colors.secondary}}
-          errorMessage="ENTER A VALID ERROR HERE"
+          // errorMessage="ENTER A VALID ERROR HERE"
           secureTextEntry
         />
         <View style={{width: '100%', paddingHorizontal: 10}}>

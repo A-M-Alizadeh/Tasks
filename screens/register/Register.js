@@ -6,7 +6,7 @@ import * as colors from './../../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {createUser} from '../../redux/common/action';
 import {useDispatch} from 'react-redux';
-import {appToast} from '../../utils'
+import {appToast} from '../../utils';
 
 export default function Register({navigation}) {
   const dispatch = useDispatch();
@@ -15,11 +15,18 @@ export default function Register({navigation}) {
   const [repeatPassword, setRepeatPassword] = useState('');
 
   const validate = () => {
-    return (username.trim().length > 0 && password.trim().length > 0 && repeatPassword.trim().length > 0) && (password.trim() === repeatPassword.trim()) ;
-  }
+    return (
+      username.trim().length > 0 &&
+      password.trim().length > 0 &&
+      repeatPassword.trim().length > 0 &&
+      password.trim() === repeatPassword.trim()
+    );
+  };
 
   const submit = () => {
-    validate() ? dispatch(createUser({username, password},navigation)) : appToast('Validation Failed !');
+    validate()
+      ? dispatch(createUser({username, password}, navigation))
+      : appToast('Validation Failed !');
   };
 
   return (
@@ -36,7 +43,7 @@ export default function Register({navigation}) {
             color: colors.secondary,
           }}
           errorStyle={{color: colors.secondary}}
-          errorMessage="ENTER A VALID ERROR HERE"
+          // errorMessage="ENTER A VALID ERROR HERE"
         />
         <Input
           value={password}
@@ -48,7 +55,7 @@ export default function Register({navigation}) {
             color: colors.secondary,
           }}
           errorStyle={{color: colors.secondary}}
-          errorMessage="ENTER A VALID ERROR HERE"
+          // errorMessage="ENTER A VALID ERROR HERE"
           secureTextEntry
         />
         <Input
@@ -63,7 +70,7 @@ export default function Register({navigation}) {
             color: colors.secondary,
           }}
           errorStyle={{color: colors.secondary}}
-          errorMessage="ENTER A VALID ERROR HERE"
+          // errorMessage="ENTER A VALID ERROR HERE"
           secureTextEntry
         />
         <Button
