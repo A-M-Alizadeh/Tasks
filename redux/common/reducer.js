@@ -1,36 +1,26 @@
-import * as Types from "./types";
-
+import * as Types from './types';
 const initialAuth = {
-  token: null,
+  // token: null,
   isLoggedIn: false,
 };
 const initialUser = {
-  usersList:[],
-};
-const initialSnackbar = {
-  open: null,
-  type: "success",
-  message: null,
-};
-const InitialWhiteCOmmonData = {
-  isDark: true,
+  usersList: [],
+  currentUser: null,
 };
 
 //------------------------------------------------------------------------------user
 export const authReducer = (state = initialAuth, action = {}) => {
   switch (action.type) {
-    case Types.SET_TOKEN: {
+    case Types.SET_LOGIN: {
       return {
         ...state,
         isLoggedIn: true,
-        token: action.payload,
       };
     }
-    case Types.REMOVE_TOKEN: {
+    case Types.SET_LOGOUT: {
       return {
         ...state,
         isLoggedIn: false,
-        token: action.payload,
       };
     }
     default:
@@ -43,41 +33,19 @@ export const userReducer = (state = initialUser, action = {}) => {
     case Types.CREATE_USER: {
       return {
         ...state,
-        usersList: [...state.usersList, action.payload]
+        usersList: [...state.usersList, action.payload],
       };
     }
-    case Types.REMOVE_USER: {
-      return {
-        state: null,
-      };
-    }
-    default:
-      return state;
-  }
-};
-//------------------------------------------------------------------------------ white common data
-export const whiteCommonDataReducer = (state = InitialWhiteCOmmonData, action = {}) => {
-  switch (action.type) {
-    case Types.SET_DARK_THEME: {
+    case Types.SET_CURRENT_USER: {
       return {
         ...state,
-        isDark: action.payload
+        currentUser: action.payload,
       };
     }
-    default:
-      return state;
-  }
-};
-//------------------------------------------------------------------------------snackbar
-export const snackbarReducer = (state = initialSnackbar, action = {}) => {
-  switch (action.type) {
-    case Types.SET_SNACKBAR: {
-      const { open, type, message } = action.payload;
+    case Types.REMOVE_CURRENT_USER: {
       return {
         ...state,
-        open,
-        type,
-        message,
+        currentUser: null,
       };
     }
     default:

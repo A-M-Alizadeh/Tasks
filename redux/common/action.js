@@ -1,56 +1,47 @@
 import * as Types from "./types";
 
 //--------------------------------------auth
-const setToken = (_data) => {
+const login = () => {
   return (dispatch) => {
     dispatch({
-      type: Types.SET_TOKEN,
-      payload: _data,
+      type: Types.SET_LOGIN,
     });
   };
 };
-const removeToken = () => {
+const logout = () => {
   return (dispatch) => {
     dispatch({
-      type: Types.REMOVE_TOKEN,
+      type: Types.SET_LOGOUT,
       payload: null,
     });
   };
 };
 //--------------------------------------user
-const setUser = (_data) => {
+const createUser = (_data,navigation) => {
+  console.log('create user data: ', _data);
+  navigation.navigate('login');
   return (dispatch) => {
     dispatch({
-      type: Types.SET_USER,
+      type: Types.CREATE_USER,
       payload: _data,
     });
   };
 };
-const removeUser = () => {
+const setCurrentUser = (_data) => {
   return (dispatch) => {
     dispatch({
-      type: Types.REMOVE_USER,
+      type: Types.SET_CURRENT_USER,
+      payload: _data,
+    });
+  };
+};
+const removeCurrentUser = () => {
+  return (dispatch) => {
+    dispatch({
+      type: Types.REMOVE_CURRENT_USER,
       payload: null,
     });
   };
 };
-//--------------------------------------white common data
-const setDarkTheme = (isDark) => {
-  return (dispatch) => {
-    dispatch({
-      type: Types.SET_DARK_THEME,
-      payload: isDark,
-    });
-  };
-};
-//--------------------------------------snackbar
-const setSnackbar = (open, type = "success", message = "") => {
-  return (dispatch) => {
-    dispatch({
-      type: Types.SET_SNACKBAR,
-      payload: { open, type, message },
-    });
-  };
-};
 
-export { setToken, removeToken, setSnackbar, setUser, removeUser, setDarkTheme };
+export { login, logout, setCurrentUser, removeCurrentUser, createUser };

@@ -4,16 +4,18 @@ import {ActivityIndicator, SafeAreaView} from 'react-native';
 import {styles} from './styles';
 import * as colors from './../../utils/colors';
 import {useSelector} from 'react-redux';
-import {StackActions} from '@react-navigation/native';
 
 export default function Splash({navigation}) {
   const {isLoggedIn} = useSelector((state) => state.auth);
+  const {rehydrated} = useSelector((state) => state._persist);
 
   useEffect(() => {
     setTimeout(() => {
-      isLoggedIn
-        ? navigation.replace('dashboard')
-        : navigation.replace('login');
+      if (rehydrated) {
+        isLoggedIn
+          ? navigation.replace('dashboard')
+          : navigation.replace('login');
+      }
     }, 1000);
   });
 
