@@ -1,10 +1,11 @@
 import * as Types from "./types";
 
 //--------------------------------------auth
-const login = () => {
+const login = (accessToken) => {
   return (dispatch) => {
     dispatch({
       type: Types.SET_LOGIN,
+      payload: accessToken
     });
   };
 };
@@ -18,7 +19,6 @@ const logout = () => {
 };
 //--------------------------------------user
 const createUser = (_data,navigation) => {
-  console.log('create user data: ', _data);
   navigation.navigate('login');
   return (dispatch) => {
     dispatch({
