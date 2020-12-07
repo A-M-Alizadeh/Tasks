@@ -7,11 +7,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {useDispatch, useSelector} from 'react-redux';
 import {login, setCurrentUser} from '../../redux/common/action';
 import _ from 'lodash';
-import {appToast} from '../../utils';
+import {appToast, createRequestBody, storge} from '../../utils';
+import Apis from '../../api/apis/Apis';
+import storage from '../../utils/storage';
 
 export default function Login({navigation}) {
   const userList = useSelector((state) => state.user.usersList);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,18 +24,26 @@ export default function Login({navigation}) {
     navigation.replace('dashboard');
   }
 
-  const validate = () => {
-    return username.trim().length > 0 && password.trim().length > 0;
-  };
-  const checkUser = () => {
-    const user = _.find(userList, {username, password});
-    user
-      ? callActions(user)
-      : appToast('User Does Not Exist or Username or Password are wrong !');
+  const requestLogin = async () => {
+    setLoading(true);
+    const body = await createRequestBody(
+      {
+        username: 'graydev',
+        password: '123456789',
+      },
+      false,
+    );
+
+    const result = await Apis.login(body);
+    dispatch(login(result.login.cookies.ow_login));
+    dispatch(setCurrentUser(result.check_login.user));
+    storge.setItem('access_token', result.login.cookies.ow_login,false);
+    setLoading(false);
+    navigation.replace('dashboard');
   };
 
   const submit = () => {
-    validate() ? checkUser() : appToast('Validation Failed !');
+    requestLogin();
   };
 
   return (
@@ -71,6 +82,7 @@ export default function Login({navigation}) {
         </View>
         <Button
           onPress={submit}
+          loading={loading}
           title=" Login"
           icon={<Icon name="sign-in" size={15} color="white" />}
         />

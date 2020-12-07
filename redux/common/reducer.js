@@ -1,6 +1,6 @@
 import * as Types from './types';
 const initialAuth = {
-  // token: null,
+  access_token: null,
   isLoggedIn: false,
 };
 const initialUser = {
@@ -15,12 +15,14 @@ export const authReducer = (state = initialAuth, action = {}) => {
       return {
         ...state,
         isLoggedIn: true,
+        access_token: action.payload,
       };
     }
     case Types.SET_LOGOUT: {
       return {
         ...state,
         isLoggedIn: false,
+        access_token: null,
       };
     }
     default:
