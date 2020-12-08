@@ -5,6 +5,22 @@ import {Login, Register, Splash, Dashboard, Setting} from '../screens';
 
 export default function Navigation() {
   const Stack = createStackNavigator();
+  // const AppNavigator = () => {
+  //   return;
+  //   <Stack.Navigator initialRouteName="splash" headerMode="none">
+  //     <Stack.Screen name="dashboard" component={Dashboard} />
+  //     <Stack.Screen name="setting" component={Setting} />
+  //   </Stack.Navigator>;
+  // };
+  // const AuthNavigator = () => {
+  //   return (
+  //     <Stack.Navigator initialRouteName="splash" headerMode="none">
+  //       <Stack.Screen name="splash" component={Splash} />
+  //       <Stack.Screen name="login" component={Login} />
+  //       <Stack.Screen name="register" component={Register} />
+  //     </Stack.Navigator>
+  //   );
+  // };
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="splash" headerMode="none">
