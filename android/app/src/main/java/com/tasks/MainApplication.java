@@ -6,7 +6,6 @@ import android.content.Context;
 import com.facebook.react.BuildConfig;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.shell.MainReactPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
@@ -33,7 +32,14 @@ public class MainApplication extends Application implements ReactApplication {
         @Override
         protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+          new MainReactPackage(), 
+          new VectorIconsPackage(),
+          new RNScreensPackage(),
+          new SafeAreaContextPackage(),
+          new ReanimatedPackage(),
+          new RNGestureHandlerPackage(),
+          new RNCMaskedViewPackage(),
+          new AsyncStoragePackage()
       );
         }
 
